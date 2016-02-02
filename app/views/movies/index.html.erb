@@ -1,0 +1,18 @@
+<h1>Rotten Mangoes Movie Wall</h1>
+<%= link_to "Add a movie!", new_movie_path %>
+<hr>
+
+<% @movies.each do |movie| %>
+  <%= link_to image_tag(movie.poster_image_url), movie_path(movie) %>
+  <h2><%= link_to movie.title, movie_path(movie) %></h2>
+  <h3><%= movie.director %></h3>
+  <p><%= movie.runtime_in_minutes %> min</p>
+  <p><%= movie.release_date %></p>
+  <p><%= movie.description %></p>
+  <hr>
+<% end %>
+
+
+
+
+

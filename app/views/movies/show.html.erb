@@ -1,0 +1,20 @@
+<%= link_to "Back to all movies.", movies_path %>
+<h1><%= @movie.title %></h1><h3>(<%= link_to 'edit', edit_movie_path(@movie) %> | <%= link_to 'delete', movie_path(@movie), :method => :delete, :"data-confirm" => "Are you sure?" %>)</h3>
+
+<img src="<%= @movie.poster_image_url %>">
+<h2><%= @movie.director %> | <%= @movie.runtime_in_minutes %> min</h2>
+<h3><%= formatted_date(@movie.release_date) %></h3>
+<p><%= @movie.description %></p>
+<hr>
+
+<h2>Reviews of <em><%= @movie.title %></em>, average review: <%= @movie.review_average %>/10</h2>
+<% if current_user %>
+  <% @movie.reviews.each do |review|%>
+    <h4><%= review.user.full_name %> said</h4>
+    <p><%= review.text %>
+    <p><small><%= review.rating_out_of_ten %>/10</small></p>
+  <% end %>
+  <%= link_to "Write a review!", new_movie_review_path(@movie) %>
+<% else %>
+  <p>Please <%= link_to "log in", new_session_path %> to see reviews and add your own.</p> 
+<% end %>
