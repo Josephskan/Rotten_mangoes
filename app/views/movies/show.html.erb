@@ -1,7 +1,11 @@
 <%= link_to "Back to all movies.", movies_path %>
 <h1><%= @movie.title %></h1><h3>(<%= link_to 'edit', edit_movie_path(@movie) %> | <%= link_to 'delete', movie_path(@movie), :method => :delete, :"data-confirm" => "Are you sure?" %>)</h3>
 
-<img src="<%= @movie.poster_image_url %>">
+<% if @movie.poster_image_url == "" %>
+  <img src="<%= @movie.upload_movie_image %>">
+<% else %>
+  <img src="<%= @movie.poster_image_url %>">
+<% end %>
 <h2><%= @movie.director %> | <%= @movie.runtime_in_minutes %> min</h2>
 <h3><%= formatted_date(@movie.release_date) %></h3>
 <p><%= @movie.description %></p>

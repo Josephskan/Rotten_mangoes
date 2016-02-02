@@ -3,7 +3,11 @@
 <hr>
 
 <% @movies.each do |movie| %>
-  <%= link_to image_tag(movie.poster_image_url), movie_path(movie) %>
+  <% if movie.poster_image_url == "" %>
+    <%= link_to image_tag(movie.upload_movie_image, size: "500x550"), movie_path(movie) %>
+  <% else %>
+    <%= link_to image_tag(movie.poster_image_url, size: "500x550"), movie_path(movie) %>
+  <% end %>
   <h2><%= link_to movie.title, movie_path(movie) %></h2>
   <h3><%= movie.director %></h3>
   <p><%= movie.runtime_in_minutes %> min</p>

@@ -45,14 +45,9 @@ class MoviesController < ApplicationController
     redirect_to movies_path
   end
 
-  def review_average
-    return 0 unless reviews.size > 0
-      reviews.sum(:rating_out_of_ten)/reviews.size
-  end
-
   protected
 
   def movie_params
-    params.require(:movie).permit(:title ,:director ,:runtime_in_minutes, :description, :poster_image_url, :release_date)
+    params.require(:movie).permit(:title ,:director ,:runtime_in_minutes, :description, :poster_image_url, :release_date, :upload_movie_image)
   end
 end
