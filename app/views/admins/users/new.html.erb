@@ -1,0 +1,40 @@
+<%= form_for [:admins, @user] do |f| %>
+  <% if @user.errors.any? %>
+    <div>
+      <% pluralize(@user.errors.count, "error") %> prevented the submition of a new user
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= link_to 'back to user listing', admins_users_path %>
+  <div>
+    <%= f.label "first name" %><br>
+    <%= f.text_field "firstname" %>
+  </div>
+  <div>
+    <%= f.label "last name" %><br>
+    <%= f.text_field "lastname" %>
+  </div>
+  <div>
+    <%= f.label "email" %><br>
+    <%= f.text_field "email" %>
+  </div>
+  <div>
+    <input type="checkbox" name="admin" value="new_user" id="new_user"><label for="new_user"> make this user into an admin</label><br>
+  </div>
+  <div>
+    <%= f.label :password %><br>
+    <%= f.password_field :password %>
+  </div>
+  <div>
+    <%= f.label :password_confirmation %><br>
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div>
+    <%= f.submit "Save" %> 
+  </div>
+<% end %>

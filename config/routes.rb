@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   end
   resources :users, only: [:new, :create]
   resources :sessions, only: [:new, :create, :destroy]
+  namespace :admins do # new folder in controllers and views
+    resources :users
+  end
 
   
   # The priority is based upon order of creation: first created -> highest priority.

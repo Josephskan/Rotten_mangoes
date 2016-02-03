@@ -1,0 +1,11 @@
+<h1>Rotten Mangoes Users</h1>
+<h3><%= link_to "Make a new user", new_admins_user_path %> | <%= link_to "Back to movies", movies_path %></h3>
+<hr>
+
+<% @users.each do |user| %>
+  <h2><%= user.full_name %> ( <small> <%= link_to "edit", edit_admins_user_path(user) %></small> | <%= link_to "delete", admins_user_path(user), :method => :delete, :"data-confirm" => "Are you sure?" %>) </h2>
+  <p><%= user.email %></p>
+  <p>admin status: <%= user.admin %></p>
+  <hr>
+<% end %>
+<%= paginate @users %>
