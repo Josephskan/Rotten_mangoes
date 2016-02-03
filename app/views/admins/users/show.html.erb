@@ -1,0 +1,6 @@
+<%= link_to 'back to user listing', admins_users_path %>
+<hr>
+<p>Would you like to <%= link_to "switch to this user", admins_user_switch_view_path(@user), method: :post, :"data-confirm" => "confirm you wish to switch to this user" %>?</p>
+<h2><%= @user.full_name %> ( <small> <%= link_to "edit", edit_admins_user_path(@user) %> | <%= link_to "delete", admins_user_path(@user), :method => :delete, :"data-confirm" => "Are you sure?" %></small>) </h2>
+<p><%= @user.email %></p>
+<p>admin status: <%= @user.admin %></p>

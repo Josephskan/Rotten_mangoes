@@ -27,8 +27,7 @@ class Admins::UsersController < ApplicationController
   def edit
   end
 
-  def update
-    
+  def update 
     if @user.update_attributes(user_params)
       redirect_to admins_users_path, notice: "edits to user #{@user.lastname} completed"
     else
@@ -39,6 +38,13 @@ class Admins::UsersController < ApplicationController
   def destroy
     @user.destroy
     redirect_to admins_users_path, notice: "account was sucesfully deleted"
+  end
+
+  def switch_view
+    session[:cache] = current_user.id
+    session[:user_id] = params[:user_id]
+    # current_user = User.find(params[:user_id])
+    redirect_to movies_path, notice: "you are now the user"
   end
 
   protected
