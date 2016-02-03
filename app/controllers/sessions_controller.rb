@@ -18,7 +18,6 @@ class SessionsController < ApplicationController
   def return_admin
     user = session[:user_id] 
     session[:user_id] = session[:cache]
-    # current_user = User.find(session[:cache])
     session[:cache] = nil
     redirect_to admins_user_path(User.find(user)), notice: "returned to admin" 
   end

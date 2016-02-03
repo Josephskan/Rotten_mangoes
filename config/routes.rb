@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   root 'movies#index'
 
   resources :movies do
@@ -9,13 +8,15 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create]
   resources :sessions, only: [:new, :create, :destroy]
+  resources :search, only: [:index] 
   namespace :admins do # new folder in controllers and views
-    resources :users do
-      post "switch_view"
+    resources :users do 
+    post "switch_view"
     end
   end
+
   post "/sessions/return", to: 'sessions#return_admin'
-  
+ 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -43,7 +43,6 @@ class Admins::UsersController < ApplicationController
   def switch_view
     session[:cache] = current_user.id
     session[:user_id] = params[:user_id]
-    # current_user = User.find(params[:user_id])
     redirect_to movies_path, notice: "you are now the user"
   end
 

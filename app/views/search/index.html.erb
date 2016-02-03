@@ -1,0 +1,27 @@
+<h1>Search index</h1>
+<p> Result(s) with 
+  <% if params[:title] %>
+    title: <%= params[:title] %>
+  <% end %>
+</p>
+<hr>
+
+<%= link_to "Back to all movies.", movies_path %>
+<%= @search_title %>
+<% if @movie_list.length > 0  %>
+  <% @movie_list.each do |movie|  %>
+    <p>
+    <% if movie.poster_image_url == "" %>
+      <%= link_to image_tag(movie.upload_movie_image, size: "500x550"), movie_path(movie) %>
+    <% else %>
+      <%= link_to image_tag(movie.poster_image_url, size: "500x550"), movie_path(movie) %>
+    <% end %>
+    </p>
+    <h2><%= link_to movie.title, movie_path(movie) %></h2>
+    <h3><%= movie.director %></h3>
+    <p><%= movie.runtime_in_minutes %> min</p>
+    <p><%= movie.release_date %></p>
+    <p><%= movie.description %></p>
+    <hr>
+  <% end %>
+<% end %>
