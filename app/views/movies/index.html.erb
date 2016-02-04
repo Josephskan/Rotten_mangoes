@@ -3,9 +3,12 @@
 <hr>
 
 <%= form_tag("/search", method: :get) do %>
-  <%= label_tag( :title,"Search title:" ) %>
-  <%= text_field_tag(:title) %>
-  <%= submit_tag %>
+  <p>Search</p>
+  <p><%= label_tag( :term,"Key word:" ) %>
+  <%= text_field_tag(:term) %></p>
+  <%= select_tag(:runtime_in_min, options_for_select([['',1],['< 90min', 2], ['> 90min , < 120min', 3], ['> 120min', 4]])) %>
+
+  <p><%= submit_tag("search") %></p>
 <% end  %>
 <hr>
 

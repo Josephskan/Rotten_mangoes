@@ -8,10 +8,11 @@ class Movie < ActiveRecord::Base
   validates :director, presence: true
   validates :runtime_in_minutes, presence: true, numericality: { only_integer: true }
   validates :release_date, presence: true
-  # validates :poster_image_url, presence: true
   validates :description, presence: true
   validate  :release_date_is_in_the_past
   validate  :image_upload_or_url
+
+  scope :search_all, -> (query) { where('title LIKE ? OR director LIKE ?', "#{search_term(query)}", "#{search_term(query)}")}
 
   def review_average
     return 0 unless reviews.size > 0
@@ -19,6 +20,11 @@ class Movie < ActiveRecord::Base
   end
 
   private
+
+  def self.search_term(query)
+    return '%%' unless query != ""
+    "%#{query}%"
+  end
 
   def release_date_is_in_the_past
     if release_date.present?
